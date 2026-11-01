@@ -1,0 +1,64 @@
+name: Deploy mydutchdoor.com
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-productie
+  cancel-in-progress: false
+
+jobs:
+  build-en-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22', cache: npm }
+      - uses: shivammathur/setup-php@v2
+        with: { php-version: '8.2' }
+      - run: npm ci
+      - run: npx astro check
+      - run: npm run build
+        env:
+          PUBLIC_PLAUSIBLE_DOMAIN: ${{ vars.PLAUSIBLE_DOMAIN }}
+      # The lead path must not break silently: runs the real PHP files.
+      - name: Test lead path
+        run: node scripts/test-leadpad.mjs
+      - name: Install PHPMailer
+        working-directory: dist
+        run: composer install --no-dev --optimize-autoloader --no-interaction
+      - name: Deploy secrets present?
+        id: secrets
+        env: { SERVER: '${{ secrets.VIMEXX_FTP_SERVER }}' }
+        run: |
+          if [ -n "$SERVER" ]; then echo "klaar=true" >> "$GITHUB_OUTPUT"; else echo "klaar=false" >> "$GITHUB_OUTPUT"; echo "::notice::FTP secrets missing, deploy skipped."; fi
+      - name: Write smtp-config.php
+        if: steps.secrets.outputs.klaar == 'true'
+        env:
+          LEAD_RECIPIENT_EMAIL: ${{ secrets.MDD_LEAD_RECIPIENT_EMAIL }}
+          LEAD_WEBHOOK_URL: ${{ secrets.MDD_LEAD_WEBHOOK_URL }}
+          FALLBACK_EMAIL: ${{ secrets.MDD_FALLBACK_EMAIL }}
+          PARTNER_NAME: ${{ secrets.MDD_PARTNER_NAME }}
+          SMTP_PASS: ${{ secrets.MDD_SMTP_PASS }}
+          TOKEN_SECRET: ${{ secrets.MDD_TOKEN_SECRET }}
+        run: |
+          php -r '
+          $c = "<?php\n";
+          foreach (["LEAD_RECIPIENT_EMAIL","LEAD_WEBHOOK_URL","FALLBACK_EMAIL","PARTNER_NAME","SMTP_PASS","TOKEN_SECRET"] as $k) $c .= "define(" . var_export($k, true) . ", " . var_export((string)getenv($k), true) . ");\n";
+          $c .= "define(\"NOTIFY_TRANSPORT\", \"email\");\ndefine(\"SMTP_HOST\", \"mail.mydutchdoor.com\");\ndefine(\"SMTP_USER\", \"noreply@mydutchdoor.com\");\ndefine(\"PRIVACY_EMAIL\", \"privacy@mydutchdoor.com\");\n";
+          file_put_contents("dist/smtp-config.php", $c);'
+      - name: Install lftp
+        if: steps.secrets.outputs.klaar == 'true'
+        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Deploy via lftp
+        if: steps.secrets.outputs.klaar == 'true'
+        run: |
+          # lead-data/ lives outside public_html's mirrored tree: never deleted by --delete
+          lftp -c "
+            set ftp:ssl-allow true; set ftp:ssl-force false; set ftp:passive-mode true;
+            set ssl:verify-certificate false; set net:timeout 30; set net:max-retries 3;
+            open -u '${{ secrets.VIMEXX_FTP_USERNAME }}','${{ secrets.VIMEXX_FTP_PASSWORD }}' ${{ secrets.VIMEXX_FTP_SERVER }};
+            mirror -R --delete --verbose --exclude-glob lead-data/ ./dist/ /domains/mydutchdoor.com/public_html/;
+            quit"

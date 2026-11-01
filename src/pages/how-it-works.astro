@@ -1,0 +1,21 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { site } from '../config/site';
+---
+<PageLayout title="How it works" heading="How My Dutch Door works" description="How My Dutch Door connects you with an independent mortgage adviser: three details, a call back, and you decide what happens next." dek="We make an introduction. We don't give advice, and we are not a lender or a mortgage adviser.">
+  <h2>1. You leave three details</h2>
+  <p>Your name, email address and phone number, plus your OK to share them. That is all we ask before you press send. Nothing else is needed to send your request.</p>
+  <h2>2. An adviser contacts you</h2>
+  <p>We pass those three details to one independent mortgage advisory partner. An adviser from that partner contacts you, usually <span class="verify">{site.responseTime}</span>. The partner is named in our <a href="/privacy/">privacy policy</a> and in the confirmation email we send you.</p>
+  <h2>3. You decide what's next</h2>
+  <p>The adviser explains your options and answers questions about your own situation. Whether you continue is entirely up to you.</p>
+  <h2>After you send your request</h2>
+  <p>You can answer four optional questions to help the adviser prepare: whether you are a US citizen, which currency you are paid in, whether you are on the expat ruling, and when you hope to buy. They are always optional, and your request is already sent either way.</p>
+  <h2>What we don't do</h2>
+  <ul>
+    <li>We don't give mortgage advice or compare lenders for you.</li>
+    <li>We never ask for income figures, ID numbers or your BSN (Dutch citizen service number) on this site.</li>
+    <li>We don't sell your details. They go to one advisory partner only.</li>
+  </ul>
+  <p><a class="btn" href="/get-in-touch/">Request a call back</a></p>
+</PageLayout>

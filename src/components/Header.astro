@@ -1,0 +1,56 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../config/site';
+const path = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="container bar">
+    <a href="/" class="brand" aria-label="My Dutch Door home">
+      <Logo />
+      <span>My Dutch Door</span>
+    </a>
+    <details class="menu" id="menu">
+      <summary>Menu</summary>
+      <nav aria-label="Main">
+        {site.nav.map((i) => (
+          <a href={i.href} aria-current={path === i.href ? 'page' : undefined}>{i.label}</a>
+        ))}
+      </nav>
+    </details>
+    <a href="/get-in-touch/" class="btn cta">Request a call back</a>
+  </div>
+</header>
+
+<script is:inline>
+  // Keep the menu open on wide screens; collapsed behind a button on small ones.
+  (function () {
+    var m = document.getElementById('menu');
+    var q = window.matchMedia('(min-width: 900px)');
+    function sync() { if (q.matches) m.setAttribute('open', ''); else m.removeAttribute('open'); }
+    sync();
+    q.addEventListener('change', sync);
+  })();
+</script>
+
+<style>
+  .site-header { background: #fff; border-bottom: 1px solid var(--line); position: relative; z-index: 10; }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+  .brand span { font-family: var(--font-head); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; }
+  .menu { order: 3; width: 100%; }
+  .menu summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; font-weight: 600; font-size: 15px; }
+  .menu summary::-webkit-details-marker { display: none; }
+  .menu nav { display: flex; flex-direction: column; padding-top: 8px; }
+  .menu nav a { display: flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 500; font-size: 16px; border-bottom: 1px solid var(--line); }
+  .menu nav a[aria-current] { color: var(--link); }
+  .cta { margin-left: auto; }
+  @media (max-width: 899px) { .cta { display: none; } .menu { order: 0; width: auto; position: relative; margin-left: auto; }
+    .menu[open] { width: 100%; } }
+  @media (min-width: 900px) {
+    .menu { order: 0; width: auto; }
+    .menu summary { display: none; }
+    .menu nav { flex-direction: row; gap: 28px; padding: 0; }
+    .menu nav a { min-height: 44px; border: 0; font-size: 15px; }
+    .cta { margin-left: 0; }
+  }
+</style>

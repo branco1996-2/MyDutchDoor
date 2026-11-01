@@ -1,0 +1,44 @@
+---
+import Logo from './Logo.astro';
+import { site } from '../config/site';
+---
+<footer class="site-footer">
+  <div class="container">
+    <div class="cols">
+      <div class="about">
+        <a href="/" class="brand" aria-label="My Dutch Door home"><Logo size={24} light /><span>My Dutch Door</span></a>
+        <p>Your way into a Dutch home.</p>
+      </div>
+      <nav aria-label="Guides"><p class="h">Guides</p>{site.footerGuides.map((i) => <a href={i.href}>{i.label}</a>)}</nav>
+      <nav aria-label="Company"><p class="h">My Dutch Door</p>{site.footerCompany.map((i) => <a href={i.href}>{i.label}</a>)}</nav>
+      <nav aria-label="Legal"><p class="h">Legal</p>{site.footerLegal.map((i) => <a href={i.href}>{i.label}</a>)}</nav>
+    </div>
+    <div class="disclaimer">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FDBA8C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 11v6M12 7.5v.5" /></svg>
+      <p><strong>{site.disclaimerLead}</strong> {site.disclaimerBody}</p>
+    </div>
+    <div class="legal">
+      <span>© 2026 My Dutch Door · KvK <span class="verify">{site.kvk}</span></span>
+      <span>Last site review: <span class="verify">{site.lastSiteReview}</span></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--ink); color: #fff; padding: 56px 0 28px; font-size: 15px; }
+  .cols { display: grid; gap: 32px; grid-template-columns: 1fr 1fr; }
+  @media (min-width: 900px) { .cols { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
+  .about { grid-column: 1 / -1; display: flex; flex-direction: column; gap: 10px; }
+  @media (min-width: 900px) { .about { grid-column: auto; } }
+  .brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; }
+  .brand span { font-family: var(--font-head); font-weight: 700; font-size: 20px; }
+  .about p { color: #c9d3dd; }
+  nav { display: flex; flex-direction: column; }
+  nav .h { font-weight: 600; color: var(--accent-on-dark); margin-bottom: 4px; }
+  nav a { color: #fff; text-decoration: none; display: flex; align-items: center; min-height: 44px; }
+  nav a:hover { color: var(--accent-on-dark); text-decoration: underline; }
+  .disclaimer { display: flex; gap: 14px; align-items: flex-start; margin-top: 36px; padding: 20px; border: 1px solid #3a4b63; border-radius: 14px; background: #1a2d47; line-height: 1.55; color: #e4e9ee; }
+  .disclaimer svg { flex: none; margin-top: 2px; }
+  .legal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 24px; color: #c9d3dd; font-size: 14px; }
+  .site-footer :global(.verify) { background: #fff1c2; }
+</style>

@@ -1,0 +1,25 @@
+# Vimexx / Apache. Force https and the .com host; .nl redirects to .com.
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(www\.)?mydutchdoor\.nl$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www\.mydutchdoor\.com$ [NC]
+RewriteRule ^(.*)$ https://mydutchdoor.com/$1 [R=301,L]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://mydutchdoor.com/$1 [R=301,L]
+
+# Never serve config, lead data or composer files
+<FilesMatch "^(smtp-config\.php|lib\.php|composer\.(json|lock))$">
+  Require all denied
+</FilesMatch>
+RedirectMatch 404 ^/(lead-data|vendor)/
+
+ErrorDocument 404 /404.html
+Options -Indexes
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  <FilesMatch "\.(woff2|css|js)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>

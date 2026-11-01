@@ -1,0 +1,12 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { site } from '../config/site';
+---
+<PageLayout title="Disclaimer" heading="Disclaimer" description="My Dutch Door is an introduction service. We do not give mortgage advice." >
+  <p class="note">Draft text. The wording is pending review by a lawyer (see VERIFY.md).</p>
+  <p><strong>{site.disclaimerLead}</strong> {site.disclaimerBody}</p>
+  <h2>General information only</h2>
+  <p>The guides on this site are general information. They are not personal advice, an offer or a recommendation. Rules, lender policies and tax rules change. An independent adviser can tell you how they apply to you.</p>
+  <h2>Independent adviser</h2>
+  <p>The advisory partner we introduce you to is independent from My Dutch Door. Any advice you receive comes from the adviser, not from us.</p>
+</PageLayout>

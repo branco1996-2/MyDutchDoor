@@ -1,0 +1,131 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { site } from '../../config/site';
+
+const questions = [
+  { name: 'us', legend: 'Are you a US citizen?', opts: [['yes', 'Yes'], ['no', 'No'], ['dual', 'Dual US and Dutch']] },
+  { name: 'currency', legend: 'Which currency are you paid in?', opts: [['euro', 'Euro'], ['usd', 'US dollar'], ['other', 'Another currency'], ['mix', 'A mix']] },
+  { name: 'ruling', legend: 'Are you on the expat ruling (30% / 27%)?', opts: [['yes', 'Yes'], ['no', 'No'], ['unsure', 'Not sure']] },
+  { name: 'when', legend: 'When are you hoping to buy?', opts: [['3m', 'Within 3 months'], ['3-12m', '3 to 12 months'], ['exploring', 'Just exploring']] },
+];
+---
+<BaseLayout title="Request sent | My Dutch Door" description="Your request has been sent." noindex>
+  <section class="page">
+    <div class="container narrow">
+      <div class="hero">
+        <span class="tick" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg></span>
+        <h1 id="ty-title" tabindex="-1"><span data-name-line>Thanks. Your request is on its way.</span></h1>
+        <p>We've passed your name, email and phone number to our mortgage advisory partner. That's all we've shared.</p>
+      </div>
+
+      <section class="card" aria-labelledby="ty-next">
+        <h2 id="ty-next">What happens next</h2>
+        <ol class="next">
+          <li><span class="n">1</span><span><strong>Check your inbox</strong><span data-email-line>We sent a copy of your request to your email address, with the name of the partner who will contact you.</span></span></li>
+          <li><span class="n">2</span><span><strong>An independent mortgage adviser contacts you</strong><span>Usually <span class="verify">{site.responseTime}<span class="vnote"> — VERIFY</span></span>.</span></span></li>
+          <li><span class="n">3</span><span><strong>You decide what happens next</strong><span>The adviser explains your options. Whether you continue is up to you.</span></span></li>
+        </ol>
+      </section>
+
+      <form class="card" id="step2" aria-labelledby="ty-opt" hidden>
+        <div>
+          <p class="eyebrow">Optional · step 2 of 2</p>
+          <h2 id="ty-opt">Help the adviser prepare</h2>
+          <p class="sub">Answer any, all or none. Your answers go to the advisory partner only if you press Save. Your request has already been sent either way.</p>
+        </div>
+        {questions.map((q) => (
+          <fieldset>
+            <legend>{q.legend}</legend>
+            <div class="opts">
+              {q.opts.map(([v, l]) => <label class="opt"><input type="radio" name={q.name} value={v} />{l}</label>)}
+            </div>
+          </fieldset>
+        ))}
+        <div class="actions">
+          <button class="btn btn-lg" type="submit">Save my answers</button>
+          <a class="skip" href="/" data-skip>Skip, I'll tell the adviser</a>
+        </div>
+        <p class="status" role="status" aria-live="polite" data-status></p>
+        <p class="fine">We never ask for income figures, ID numbers or your BSN here. The adviser asks for what they need directly.</p>
+      </form>
+
+      <p class="withdraw">Changed your mind? You can withdraw your consent and ask us to delete your details at any time: <a href="mailto:privacy@mydutchdoor.com">privacy@mydutchdoor.com</a> <span class="verify">VERIFY</span></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const track = (e: string) => { try { (window as any).plausible?.(e); } catch {} };
+  let lead: { token?: string; name?: string; email?: string } | null = null;
+  try { lead = JSON.parse(sessionStorage.getItem('mdd-lead') || 'null'); } catch {}
+
+  const title = document.querySelector<HTMLElement>('[data-name-line]')!;
+  const form = document.getElementById('step2') as HTMLFormElement;
+  const status = form.querySelector<HTMLElement>('[data-status]')!;
+
+  if (lead?.name) title.textContent = `Thanks, ${lead.name}. Your request is on its way.`;
+  if (lead?.email) document.querySelector('[data-email-line]')!.textContent = `We sent a copy of your request to ${lead.email}, with the name of the partner who will contact you.`;
+  // Step 2 only makes sense when we can link it to a lead.
+  if (lead?.token) form.hidden = false;
+  document.getElementById('ty-title')!.focus();
+
+  form.querySelector('[data-skip]')!.addEventListener('click', () => {
+    track('step2_skipped');
+    try { sessionStorage.removeItem('mdd-lead'); } catch {}
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const body: Record<string, string> = { token: lead!.token! };
+    for (const k of ['us', 'currency', 'ruling', 'when']) { const v = fd.get(k); if (typeof v === 'string') body[k] = v; }
+    if (Object.keys(body).length === 1) { status.textContent = 'Choose at least one answer, or skip this step.'; return; }
+    const base = (import.meta.env.PUBLIC_LEAD_API as string | undefined) ?? '';
+    try {
+      const res = await fetch(`${base}/step2.php`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      if (res.ok) {
+        track('step2_saved');
+        try { sessionStorage.removeItem('mdd-lead'); } catch {}
+        form.replaceChildren(Object.assign(document.createElement('p'), { className: 'saved', textContent: 'Saved. Thank you, your answers have been sent to the adviser.', role: 'status' }));
+      } else {
+        status.textContent = 'We could not save your answers. Your request itself is safe and already sent.';
+      }
+    } catch {
+      status.textContent = 'We could not reach the server. Your request itself is safe and already sent.';
+    }
+  });
+</script>
+
+<style>
+  .page { background: var(--paper); padding: 40px 0 72px; }
+  .narrow { max-width: 720px; display: flex; flex-direction: column; gap: 24px; }
+  .hero { display: flex; flex-direction: column; gap: 12px; }
+  .tick { width: 52px; height: 52px; border-radius: 50%; background: var(--success-bg); color: var(--success); display: inline-flex; align-items: center; justify-content: center; }
+  h1 { font-size: clamp(30px, 5vw, 42px); }
+  h1:focus { outline: none; }
+  .hero p { font-size: 18px; color: var(--ink-2); }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 20px; }
+  .card[hidden] { display: none; }
+  h2 { font-size: 24px; }
+  .next { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .next li { display: flex; gap: 14px; align-items: flex-start; }
+  .next li > span:last-child { display: flex; flex-direction: column; color: var(--ink-2); }
+  .next strong { color: var(--ink); }
+  .n { width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 600; flex: none; }
+  .eyebrow { font-size: 14px; font-weight: 600; color: var(--muted); }
+  .sub { color: var(--ink-2); margin-top: 6px; }
+  fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+  legend { font-weight: 600; margin-bottom: 8px; padding: 0; }
+  .opts { display: flex; flex-wrap: wrap; gap: 10px; }
+  .opt { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border: 1px solid var(--field-border); border-radius: 10px; cursor: pointer; }
+  .opt input { width: 18px; height: 18px; accent-color: var(--accent); }
+  .opt:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .actions { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; }
+  .skip { font-weight: 600; display: inline-flex; align-items: center; min-height: 44px; }
+  .fine { font-size: 14px; color: var(--muted); }
+  .status { color: var(--error); font-size: 14px; }
+  .status:empty { display: none; }
+  :global(.saved) { color: var(--success); font-weight: 600; background: var(--success-bg); padding: 14px; border-radius: 10px; }
+  .withdraw { font-size: 15px; color: var(--ink-2); }
+  .vnote { display: none; }
+</style>

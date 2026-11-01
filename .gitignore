@@ -1,0 +1,15 @@
+/dist/
+/.astro/
+/node_modules/
+/vendor/
+/php/vendor/
+# Lead storage and logs contain personal data: never commit
+/lead-data/
+smtp-config.php
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+.vscode/
+.idea/

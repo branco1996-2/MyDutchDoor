@@ -1,0 +1,83 @@
+---
+import { site } from '../config/site';
+interface Props { id?: string; heading?: string; intro?: string }
+const {
+  id = 'form',
+  heading = 'Request a call back',
+  intro = "Three details, about 30 seconds. Any other questions come after you send, and they're optional.",
+} = Astro.props;
+---
+<form {id} class="lead-form" method="post" action="/submit.php" novalidate aria-labelledby={`${id}-title`} data-lead-form>
+  <div class="head">
+    <h2 id={`${id}-title`}>{heading}</h2>
+    <p>{intro}</p>
+  </div>
+  <noscript><p class="nojs">This form needs JavaScript to send your request. Please turn it on, or come back later. Nothing is sent without your OK.</p></noscript>
+  <section class="summary" data-summary hidden tabindex="-1" aria-labelledby={`${id}-sum`}>
+    <h3 id={`${id}-sum`}>Please check <span data-summary-count>3 things</span></h3>
+    <ul data-summary-list></ul>
+  </section>
+  <div class="field">
+    <label for={`${id}-name`}>Full name</label>
+    <input class="input" id={`${id}-name`} name="name" type="text" autocomplete="name" placeholder="e.g. Sam Carter" required />
+    <span class="field-error" id={`${id}-name-err`} hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v6M12 16.5v.5" /></svg><span data-msg></span></span>
+  </div>
+  <div class="field">
+    <label for={`${id}-email`}>Email</label>
+    <input class="input" id={`${id}-email`} name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+    <span class="field-error" id={`${id}-email-err`} hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v6M12 16.5v.5" /></svg><span data-msg></span></span>
+  </div>
+  <div class="field">
+    <label for={`${id}-phone`}>Phone</label>
+    <div class="phone">
+      <select class="input cc" name="country" aria-label="Country code">
+        <option value="NL">+31</option><option value="US">+1</option><option value="GB">+44</option><option value="DE">+49</option>
+      </select>
+      <input class="input" id={`${id}-phone`} name="phone" type="tel" autocomplete="tel-national" placeholder="6 1234 5678" required />
+    </div>
+    <span class="field-error" id={`${id}-phone-err`} hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v6M12 16.5v.5" /></svg><span data-msg></span></span>
+  </div>
+  <div class="consent">
+    <input id={`${id}-consent`} name="consent" type="checkbox" required />
+    <label for={`${id}-consent`}>{site.consentText} <a href="/privacy/">privacy policy</a>. I can withdraw this at any time.</label>
+  </div>
+  <span class="field-error" id={`${id}-consent-err`} hidden><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v6M12 16.5v.5" /></svg><span data-msg></span></span>
+
+  <!-- Spam traps: honeypot (hidden from people) and render time -->
+  <div class="trap" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+  <input type="hidden" name="t" value="" data-rendered />
+  <button class="btn btn-lg" type="submit">Request my call back</button>
+  <p class="status" role="status" aria-live="polite" data-status></p>
+  <p class="note">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg>
+    Sent to one advisory partner only. Never sold.
+  </p>
+</form>
+
+<script>
+  import '../scripts/lead-form.ts';
+</script>
+
+<style>
+  .lead-form { margin: 0; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 24px; box-shadow: 0 1px 2px rgba(19,35,58,.06), 0 12px 32px rgba(19,35,58,.08); display: flex; flex-direction: column; gap: 18px; }
+  @media (min-width: 720px) { .lead-form { padding: 32px; } }
+  .head { display: flex; flex-direction: column; gap: 6px; }
+  .head h2 { font-size: 26px; line-height: 1.2; }
+  .head p { font-size: 15px; color: var(--muted); line-height: 1.5; }
+  .phone { display: flex; gap: 8px; }
+  .cc { flex: none; width: 96px; padding: 0 10px; }
+  .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .lead-form .btn { width: 100%; }
+  .summary { background: var(--error-bg); border: 1px solid var(--error); border-radius: 10px; padding: 16px 18px; color: var(--error); }
+  .summary h3 { font-size: 18px; color: var(--error); }
+  .summary ul { margin: 8px 0 0; padding-left: 20px; }
+  .summary a { color: var(--error); font-weight: 600; }
+  .field-error { display: flex; gap: 6px; align-items: flex-start; }
+  .field-error[hidden], .summary[hidden] { display: none; }
+  .field-error svg { flex: none; margin-top: 3px; }
+  .consent + .field-error { margin-top: -10px; }
+  .status { font-size: 14px; color: var(--ink-2); min-height: 0; }
+  .status:empty { display: none; }
+  .nojs { padding: 12px 14px; background: var(--accent-soft); border-radius: 10px; font-size: 14px; }
+  .note { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+</style>

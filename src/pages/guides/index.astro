@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const guides = (await getCollection('guides')).sort((a, b) => a.data.order - b.data.order);
+---
+<BaseLayout title="Guides for expats buying in the Netherlands | My Dutch Door" description="Plain-English guides to getting a Dutch mortgage as a non-EU expat: US citizens, FATCA, non-euro income, the expat ruling and buying step by step.">
+  <section class="head"><div class="container">
+    <h1>Guides</h1>
+    <p>Plain-English guides for expats buying a home in the Netherlands. Every Dutch term is explained the first time it appears. General information, not advice.</p>
+  </div></section>
+  <section class="list"><div class="container grid">
+    {guides.map((g) => (
+      <a class="card" href={`/guides/${g.id}/`}>
+        <span class="cat">{g.data.category}</span>
+        <span class="t">{g.data.title}</span>
+        <span class="d">{g.data.description}</span>
+        {g.data.status === 'stub' && <span class="soon">Coming soon</span>}
+      </a>
+    ))}
+  </div></section>
+</BaseLayout>
+<style>
+  .head { background: var(--paper); padding: 48px 0; border-bottom: 1px solid var(--line); }
+  .head .container { display: flex; flex-direction: column; gap: 12px; max-width: 800px; margin-inline: auto; }
+  h1 { font-size: clamp(32px, 5vw, 46px); }
+  .head p { font-size: 19px; color: var(--ink-2); }
+  .list { padding: 48px 0 72px; }
+  .grid { display: grid; gap: 20px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .grid { grid-template-columns: 1fr 1fr; } }
+  .card { display: flex; flex-direction: column; gap: 10px; padding: 24px; border: 1px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--ink); }
+  .card:hover { border-color: var(--accent); box-shadow: 0 8px 24px rgba(19,35,58,.08); color: var(--ink); }
+  .cat { align-self: flex-start; font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--link); }
+  .t { font-family: var(--font-head); font-weight: 700; font-size: 22px; line-height: 1.2; }
+  .d { color: var(--ink-2); font-size: 16px; }
+  .soon { font-size: 13px; font-weight: 600; color: var(--muted); }
+</style>

@@ -1,0 +1,26 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { privacyRecipient } from '../config/site';
+---
+<PageLayout title="Privacy policy" heading="Privacy policy" description="How My Dutch Door handles your personal data, who receives it, and how to withdraw consent.">
+  <p class="note">Draft text. The legal wording, retention period and recipient details are pending review by a lawyer (see VERIFY.md).</p>
+  <h2>Who is responsible</h2>
+  <p>My Dutch Door is responsible for the personal data you give us on this site. Contact for privacy questions: <a href="mailto:privacy@mydutchdoor.com">privacy@mydutchdoor.com</a> <span class="verify">VERIFY</span>.</p>
+  <h2>What we collect</h2>
+  <ul>
+    <li>Your name, email address and phone number, when you send a request.</li>
+    <li>Optional answers to four multiple-choice questions, only if you press Save after sending.</li>
+    <li>A record of your consent: the time, the version of the consent text, and a hashed form of your IP address (not the address itself).</li>
+  </ul>
+  <p>We do not ask for income figures, ID numbers or your BSN on this site.</p>
+  <h2>Why, and on what basis</h2>
+  <p>We use these details to pass your request to an independent mortgage advisory partner so one of their advisers can contact you, and to send you a confirmation email. The basis is your consent, which you can withdraw at any time.</p>
+  <h2>Who receives your details</h2>
+  <p>Your details go to one advisory partner only: <strong>{privacyRecipient}</strong> <span class="verify">VERIFY</span>. We do not sell your details and do not share them with anyone else, except service providers that process them for us (hosting and email delivery) <span class="verify">VERIFY: list processors</span>.</p>
+  <h2>How long we keep them</h2>
+  <p><span class="verify">VERIFY with lawyer: retention period</span></p>
+  <h2>Your rights, and withdrawing consent</h2>
+  <p>You can withdraw your consent, ask to see, correct or delete your details, or object to how we use them at any time by emailing <a href="mailto:privacy@mydutchdoor.com">privacy@mydutchdoor.com</a>. You can also complain to the Dutch Data Protection Authority (Autoriteit Persoonsgegevens).</p>
+  <h2>Analytics and cookies</h2>
+  <p>See our <a href="/cookies/">cookie policy</a>.</p>
+</PageLayout>

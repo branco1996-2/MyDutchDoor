@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LeadForm from '../../components/LeadForm.astro';
+---
+<BaseLayout title="Request a call back | My Dutch Door" description="Leave your name, email and phone number and an independent mortgage adviser contacts you. We make the introduction; we don't give advice.">
+  <section class="page">
+    <div class="container narrow">
+      <p class="step">Step 1 of 2 · step 2 is optional</p>
+      <h1>Request a call from an independent mortgage adviser</h1>
+      <p class="lead">Three details is all we need. The adviser asks about your situation when they contact you.</p>
+      <LeadForm id="form" heading="Your contact details" intro="Name, email and phone. Nothing else is needed to send your request." />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page { background: var(--paper); padding: 40px 0 72px; }
+  .narrow { max-width: 680px; display: flex; flex-direction: column; gap: 16px; }
+  .step { font-size: 14px; font-weight: 600; color: var(--muted); }
+  h1 { font-size: clamp(30px, 5vw, 42px); }
+  .lead { color: var(--ink-2); font-size: 18px; margin-bottom: 8px; }
+</style>

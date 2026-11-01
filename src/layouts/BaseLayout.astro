@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../config/site';
+
+interface Props { title: string; description: string; noindex?: boolean; ogType?: string }
+const { title, description, noindex = false } = Astro.props;
+const plausible = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN as string | undefined; // cookieless analytics, set in CI
+const canonical = new URL(Astro.url.pathname, site.domain).href;
+const orgLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'Organization', '@id': `${site.domain}/#org`, name: site.name, url: site.domain, slogan: site.tagline },
+    { '@type': 'WebSite', '@id': `${site.domain}/#site`, url: site.domain, name: site.name, inLanguage: 'en', publisher: { '@id': `${site.domain}/#org` } },
+  ],
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(orgLd)} />
+    {plausible && <script is:inline defer data-domain={plausible} src="https://plausible.io/js/script.js"></script>}
+    <slot name="head" />
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <Header />
+    <main id="main"><slot /></main>
+    <Footer />
+  </body>
+</html>

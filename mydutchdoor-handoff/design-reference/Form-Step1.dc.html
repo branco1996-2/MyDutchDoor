@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Request a call back, step 1</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#F3F5F7;color:#13233A;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque','Instrument Sans',sans-serif;letter-spacing:-0.015em}
+a{color:#B33A0A}a:hover{color:#8A2C07}
+.verify{background:#FFF1C2;color:#6B4A00;border-radius:4px;padding:1px 6px;font-weight:600;font-size:0.88em}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #EA580C;outline-offset:2px}
+.clean .verify{background:none;color:inherit;font-weight:inherit;font-size:inherit;padding:0}
+.clean .vnote{display:none}
+</style>
+</helmet>
+<div class="{{modeClass}}" style="width: 1200px; min-height: 960px; box-sizing: border-box; display: flex; flex-direction: column; background: #F3F5F7; color: #13233A; font-family: 'Instrument Sans', system-ui, sans-serif">
+
+<header style="background: #FFFFFF; border-bottom: 1px solid #DCE2E8; padding: 16px 48px; display: flex; justify-content: space-between; align-items: center">
+<a href="Main.dc.html" aria-label="My Dutch Door home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #13233A">
+<svg width="26" height="32" viewBox="0 0 28 34" aria-hidden="true"><path d="M2 34V14a12 12 0 0 1 24 0v20z" fill="#EA580C"></path><path d="M8 34V16a6 6 0 0 1 12 0v18" fill="none" stroke="#FFFFFF" stroke-width="1.6" opacity="0.55"></path><circle cx="17" cy="23" r="1.8" fill="#FFFFFF"></circle></svg>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px">My Dutch Door</span>
+</a>
+<p style="margin: 0; font-size: 14px; color: #5B6878">We don't give advice. We connect you with an independent adviser.</p>
+</header>
+
+<main style="flex: 1; padding: 56px 48px 40px; display: flex; gap: 64px; align-items: flex-start">
+<div style="flex: 1; display: flex; flex-direction: column; gap: 24px; padding-top: 12px">
+<p style="margin: 0; font-size: 14px; font-weight: 600; color: #5B6878">Step 1 of 2 · step 2 is optional</p>
+<h1 style="margin: 0; font-size: 44px; line-height: 1.08">Request a call from an independent mortgage adviser</h1>
+<p style="margin: 0; font-size: 18px; line-height: 1.55; color: #3E4C5E">Three details is all we need. The adviser asks about your situation when they contact you.</p>
+<ol style="margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px">
+<li style="display: flex; gap: 16px; align-items: flex-start"><span style="width: 32px; height: 32px; flex: none; border-radius: 50%; background: #13233A; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px">1</span><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px">You send your name, email and phone</strong><span style="font-size: 15px; color: #5B6878">About 30 seconds. Nothing else is required.</span></span></li>
+<li style="display: flex; gap: 16px; align-items: flex-start"><span style="width: 32px; height: 32px; flex: none; border-radius: 50%; background: #FFFFFF; border: 1.5px solid #13233A; color: #13233A; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; box-sizing: border-box">2</span><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px">We pass them to one advisory partner</strong><span style="font-size: 15px; color: #5B6878">Only to them, so an independent adviser can contact you.</span></span></li>
+<li style="display: flex; gap: 16px; align-items: flex-start"><span style="width: 32px; height: 32px; flex: none; border-radius: 50%; background: #FFFFFF; border: 1.5px solid #13233A; color: #13233A; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 15px; box-sizing: border-box">3</span><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px">An adviser calls or emails you</strong><span style="font-size: 15px; color: #5B6878"><span class="verify">Within one business day<span class="vnote"> — VERIFY</span></span></span></span></li>
+</ol>
+</div>
+
+<form aria-labelledby="f1-title" style="margin: 0; width: 520px; flex: none; box-sizing: border-box; background: #FFFFFF; border: 1px solid #DCE2E8; border-radius: 16px; padding: 36px; box-shadow: 0 12px 32px rgba(19,35,58,0.08); display: flex; flex-direction: column; gap: 20px">
+<h2 id="f1-title" style="margin: 0; font-size: 24px">Your contact details</h2>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f1-name" style="font-size: 14px; font-weight: 600">Full name</label>
+<input id="f1-name" type="text" autocomplete="name" value="Sam Carter" style="height: 50px; border: 1px solid #8A97A6; border-radius: 10px; padding: 0 14px; font: inherit; font-size: 16px; color: #13233A; background: #FFFFFF; width: 100%; box-sizing: border-box">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f1-email" style="font-size: 14px; font-weight: 600">Email</label>
+<input id="f1-email" type="email" autocomplete="email" aria-describedby="f1-email-hint" placeholder="you@example.com" style="height: 50px; border: 2px solid #13233A; border-radius: 10px; padding: 0 13px; font: inherit; font-size: 16px; color: #13233A; background: #FFFFFF; width: 100%; box-sizing: border-box; box-shadow: 0 0 0 4px #FDE2CF">
+<span id="f1-email-hint" style="font-size: 13px; color: #5B6878">We send a copy of your request here.</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="f1-phone" style="font-size: 14px; font-weight: 600">Phone</label>
+<div style="display: flex; gap: 8px">
+<select aria-label="Country code" style="height: 50px; border: 1px solid #8A97A6; border-radius: 10px; padding: 0 10px; font: inherit; font-size: 16px; color: #13233A; background: #FFFFFF; width: 100px; flex: none"><option>+31</option><option>+1</option><option>+44</option></select>
+<input id="f1-phone" type="tel" autocomplete="tel-national" placeholder="6 1234 5678" style="height: 50px; border: 1px solid #8A97A6; border-radius: 10px; padding: 0 14px; font: inherit; font-size: 16px; color: #13233A; background: #FFFFFF; flex: 1; min-width: 0; box-sizing: border-box">
+</div>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 16px; background: #F3F5F7; border-radius: 10px">
+<input id="f1-consent" type="checkbox" style="width: 20px; height: 20px; margin: 2px 0 0; flex: none; accent-color: #C2410C">
+<label for="f1-consent" style="font-size: 14px; line-height: 1.55; color: #3E4C5E">I agree that My Dutch Door shares my name, email and phone number with one mortgage advisory partner, so one of their advisers can contact me about my question. The partner is named in our <a href="#">privacy policy</a>. I can withdraw this at any time.</label>
+</div>
+<a href="Form-Error.dc.html" style="display: flex; align-items: center; justify-content: center; min-height: 54px; border-radius: 10px; background: #C2410C; color: #FFFFFF; font-size: 17px; font-weight: 600; text-decoration: none">Send my request</a>
+<p style="margin: 0; display: flex; gap: 8px; align-items: center; font-size: 13px; color: #5B6878"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Sent to one advisory partner only. No spam puzzles, no newsletter sign-up.</p>
+</form>
+</main>
+
+<footer style="padding: 20px 48px; border-top: 1px solid #DCE2E8; background: #FFFFFF">
+<p style="margin: 0; font-size: 13px; line-height: 1.55; color: #5B6878"><strong style="color: #13233A">We only connect you with an independent adviser.</strong> My Dutch Door does not give mortgage advice and is not a lender or a mortgage adviser. An independent mortgage advisory partner contacts you directly.</p>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"placeholders":{"editor":"boolean","default":true},"$preview":{"width":1200,"height":960}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { modeClass: this.props.placeholders === false ? 'clean' : '' };
+  }
+}
+</script>
+</body>
+</html>

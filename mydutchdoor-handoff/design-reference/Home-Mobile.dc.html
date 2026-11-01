@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>My Dutch Door homepage, mobile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#FFFFFF;color:#13233A;font-family:'Instrument Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque','Instrument Sans',sans-serif;letter-spacing:-0.015em}
+a{color:#B33A0A}a:hover{color:#8A2C07}
+.verify{background:#FFF1C2;color:#6B4A00;border-radius:4px;padding:1px 6px;font-weight:600;font-size:0.88em}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #EA580C;outline-offset:2px}
+details summary{cursor:pointer;list-style:none}
+details summary::-webkit-details-marker{display:none}
+.clean .verify{background:none;color:inherit;font-weight:inherit;font-size:inherit;padding:0}
+.clean .vnote{display:none}
+</style>
+</helmet>
+<div class="{{modeClass}}" style="width: 390px; min-height: 5900px; display: flex; flex-direction: column; background: #FFFFFF; color: #13233A; font-family: 'Instrument Sans', system-ui, sans-serif">
+
+<header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; border-bottom: 1px solid #DCE2E8; background: #FFFFFF">
+<a href="#" aria-label="My Dutch Door home" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: #13233A">
+<svg width="22" height="27" viewBox="0 0 28 34" aria-hidden="true"><path d="M2 34V14a12 12 0 0 1 24 0v20z" fill="#EA580C"></path><path d="M8 34V16a6 6 0 0 1 12 0v18" fill="none" stroke="#FFFFFF" stroke-width="1.6" opacity="0.55"></path><circle cx="17" cy="23" r="1.8" fill="#FFFFFF"></circle></svg>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 19px">My Dutch Door</span>
+</a>
+<button type="button" aria-label="Open menu" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 1px solid #DCE2E8; border-radius: 10px; background: #FFFFFF; color: #13233A; cursor: pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+</header>
+
+<section aria-labelledby="m-hero" style="background: #F3F5F7; padding: 32px 16px 0; display: flex; flex-direction: column; gap: 20px">
+<p style="margin: 0; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; padding: 5px 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #DCE2E8; font-size: 13px; font-weight: 600; color: #3E4C5E"><span aria-hidden="true" style="width: 7px; height: 7px; border-radius: 50%; background: #EA580C"></span>For expats buying in the Netherlands</p>
+<h1 id="m-hero" style="margin: 0; font-size: 38px; line-height: 1.06; font-weight: 700">A Dutch mortgage, explained in plain English.</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #3E4C5E">Leave your details and an independent mortgage adviser calls you back. We don't give advice ourselves. We make the introduction.</p>
+
+<form aria-labelledby="m-form" style="margin: 0; background: #FFFFFF; border: 1px solid #DCE2E8; border-radius: 16px; padding: 20px; box-shadow: 0 8px 24px rgba(19,35,58,0.08); display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 id="m-form" style="margin: 0; font-size: 22px">Request a call back</h2>
+<p style="margin: 0; font-size: 14px; line-height: 1.5; color: #5B6878">Three details, about 30 seconds. Other questions come after, and they're optional.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="m-name" style="font-size: 14px; font-weight: 600">Full name</label>
+<input id="m-name" type="text" autocomplete="name" placeholder="e.g. Sam Carter" style="height: 48px; border: 1px solid #8A97A6; border-radius: 10px; padding: 0 14px; font: inherit; font-size: 16px; color: #13233A; background: #FFFFFF; width: 100%; box-sizing: border-box">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="m-email" style="font-size: 14px; font-weight: 600">Email</label>
+<input id="m-email" type="email" autocomplete="email" placeholder="you@example.com" style="height: 48px; border: 1px solid #8A97A6; border-radius: 10px; padding: 0 14px; font: inherit; font-size: 16px; color: #13233A; background: #FFFFFF; width: 100%; box-sizing: border-box">
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px">
+<label for="m-phone" style="font-size: 14px; font-weight: 600">Phone</label>
+<div style="display: flex; gap: 8px">
+<select aria-label="Country code" style="height: 48px; border: 1px solid #8A97A6; border-radius: 10px; padding: 0 8px; font: inherit; font-size: 16px; color: #13233A; background: #FFFFFF; width: 84px; flex: none"><option>+31</option><option>+1</option><option>+44</option></select>
+<input id="m-phone" type="tel" autocomplete="tel-national" placeholder="6 1234 5678" style="height: 48px; border: 1px solid #8A97A6; border-radius: 10px; padding: 0 14px; font: inherit; font-size: 16px; color: #13233A; background: #FFFFFF; flex: 1; min-width: 0; box-sizing: border-box">
+</div>
+</div>
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 12px; background: #F3F5F7; border-radius: 10px">
+<input id="m-consent" type="checkbox" style="width: 22px; height: 22px; margin: 1px 0 0; flex: none; accent-color: #C2410C">
+<label for="m-consent" style="font-size: 14px; line-height: 1.5; color: #3E4C5E">I agree that My Dutch Door shares my name, email and phone number with one mortgage advisory partner, so one of their advisers can contact me about my question. The partner is named in our <a href="#">privacy policy</a>. I can withdraw this at any time.</label>
+</div>
+<button type="submit" style="min-height: 52px; border: 0; border-radius: 10px; background: #C2410C; color: #FFFFFF; font: inherit; font-size: 17px; font-weight: 600; cursor: pointer">Request my call back</button>
+<p style="margin: 0; display: flex; gap: 8px; align-items: center; font-size: 13px; color: #5B6878"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Sent to one advisory partner only. Never sold.</p>
+</form>
+
+<svg viewBox="380 0 400 204" width="358" height="183" aria-hidden="true" style="display: block; margin-top: 8px">
+<g fill="#FFFFFF" stroke="#13233A" stroke-width="2" stroke-linejoin="round">
+<path d="M270 202V60l55-35l55 35v142z"></path>
+<path d="M380 202V75h25V50h90v25h25v127z"></path>
+<path d="M520 202V70l60-40l60 40v132z"></path>
+<path d="M640 202V80h20V62h20V45h50v17h20v18h20v122z"></path>
+<path d="M770 202V85q0-18 18-22q12-3 12-23h60q0 20 12 23q18 4 18 22v117z"></path>
+</g>
+<g fill="#C9D3DD">
+<rect x="404" y="90" width="18" height="24"></rect><rect x="478" y="90" width="18" height="24"></rect><rect x="404" y="132" width="18" height="24"></rect><rect x="478" y="132" width="18" height="24"></rect><rect x="437" y="100" width="26" height="40"></rect>
+<rect x="542" y="86" width="18" height="24"></rect><rect x="600" y="86" width="18" height="24"></rect><rect x="542" y="128" width="18" height="24"></rect><rect x="600" y="128" width="18" height="24"></rect>
+<rect x="664" y="94" width="18" height="24"></rect><rect x="728" y="94" width="18" height="24"></rect><rect x="664" y="136" width="18" height="24"></rect><rect x="728" y="136" width="18" height="24"></rect>
+</g>
+<g fill="#13233A"><rect x="571" y="166" width="18" height="36"></rect><rect x="696" y="166" width="18" height="36"></rect></g>
+<path d="M435 202V170a15 15 0 0 1 30 0V202z" fill="#EA580C" stroke="#13233A" stroke-width="2"></path>
+<path d="M380 202H780" stroke="#13233A" stroke-width="2"></path>
+</svg>
+</section>
+
+<section aria-label="What My Dutch Door is" style="padding: 28px 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 16px; border-bottom: 1px solid #DCE2E8">
+<div style="display: flex; flex-direction: column; gap: 6px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="12" r="3"></circle><path d="M9 12h6"></path></svg><p style="margin: 0; font-weight: 600; font-size: 15px">Not a bank, not an adviser</p><p style="margin: 0; font-size: 13px; line-height: 1.45; color: #5B6878">We make the introduction. No advice.</p></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"></circle><path d="M2 21c0-4 3-6 7-6s7 2 7 6"></path><path d="M16 11l2 2 4-4"></path></svg><p style="margin: 0; font-weight: 600; font-size: 15px">One partner only</p><p style="margin: 0; font-size: 13px; line-height: 1.45; color: #5B6878">Never sold, never shared further.</p></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"></path><path d="M9 4v14M15 6v14"></path></svg><p style="margin: 0; font-weight: 600; font-size: 15px">Nationwide</p><p style="margin: 0; font-size: 13px; line-height: 1.45; color: #5B6878">Wherever you plan to buy.</p></div>
+<div style="display: flex; flex-direction: column; gap: 6px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C2410C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h13"></path></svg><p style="margin: 0; font-weight: 600; font-size: 15px">Plain English</p><p style="margin: 0; font-size: 13px; line-height: 1.45; color: #5B6878">Dutch terms explained as we go.</p></div>
+</section>
+
+<section aria-labelledby="m-sit" style="padding: 56px 16px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h2 id="m-sit" style="margin: 0; font-size: 30px; line-height: 1.12">Your situation, explained</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3E4C5E">Start with the guide that fits you.</p>
+</div>
+<a href="#" style="display: flex; gap: 14px; align-items: flex-start; padding: 20px; border: 1px solid #DCE2E8; border-radius: 14px; text-decoration: none; color: #13233A">
+<span style="width: 44px; height: 44px; flex: none; border-radius: 12px; background: #FFF4EC; color: #C2410C; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"></path><path d="M5 4h12l-2 4 2 4H5"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">US citizen or dual national</span><span style="font-size: 14px; line-height: 1.5; color: #3E4C5E">Some banks ask for a US TIN or a CLN; others don't.</span><span style="font-size: 14px; font-weight: 600; color: #B33A0A">FATCA, TIN and CLN →</span></span>
+</a>
+<a href="#" style="display: flex; gap: 14px; align-items: flex-start; padding: 20px; border: 1px solid #DCE2E8; border-radius: 14px; text-decoration: none; color: #13233A">
+<span style="width: 44px; height: 44px; flex: none; border-radius: 12px; background: #FFF4EC; color: #C2410C; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M15 9.5c-.5-1.2-1.7-2-3-2-1.7 0-3 1-3 2.3 0 3 6 1.7 6 4.7 0 1.3-1.3 2.3-3 2.3-1.3 0-2.5-.8-3-2"></path><path d="M12 5.5v2M12 16.8v1.7"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">Paid in dollars or another currency</span><span style="font-size: 14px; line-height: 1.5; color: #3E4C5E">Banks typically count 90% of non-euro income when they work out your maximum mortgage.</span><span style="font-size: 14px; font-weight: 600; color: #B33A0A">Non-euro income →</span></span>
+</a>
+<a href="#" style="display: flex; gap: 14px; align-items: flex-start; padding: 20px; border: 1px solid #DCE2E8; border-radius: 14px; text-decoration: none; color: #13233A">
+<span style="width: 44px; height: 44px; flex: none; border-radius: 12px; background: #FFF4EC; color: #C2410C; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 5 5 19"></path><circle cx="7" cy="7" r="2.5"></circle><circle cx="17" cy="17" r="2.5"></circle></svg></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">On the expat ruling</span><span style="font-size: 14px; line-height: 1.5; color: #3E4C5E">The allowance drops from 30% to 27% on 1 January 2027.</span><span style="font-size: 14px; font-weight: 600; color: #B33A0A">Expat ruling →</span></span>
+</a>
+<a href="#" style="display: flex; gap: 14px; align-items: flex-start; padding: 20px; border: 1px solid #DCE2E8; border-radius: 14px; text-decoration: none; color: #13233A">
+<span style="width: 44px; height: 44px; flex: none; border-radius: 12px; background: #FFF4EC; color: #C2410C; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 12 4l9 7"></path><path d="M5 10v10h14V10"></path><path d="M10 20v-6h4v6"></path></svg></span>
+<span style="display: flex; flex-direction: column; gap: 6px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700">New to the Dutch market</span><span style="font-size: 14px; line-height: 1.5; color: #3E4C5E">From first viewing to notary, step by step.</span><span style="font-size: 14px; font-weight: 600; color: #B33A0A">Buying guide →</span></span>
+</a>
+</section>
+
+<section aria-labelledby="m-how" style="background: #F3F5F7; padding: 56px 16px; display: flex; flex-direction: column; gap: 20px">
+<h2 id="m-how" style="margin: 0; font-size: 30px">How it works</h2>
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px">
+<li style="display: flex; gap: 16px; padding: 20px; background: #FFFFFF; border-radius: 14px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 34px; font-weight: 700; line-height: 1; color: #C2410C; flex: none; width: 24px">1</span><span style="display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 600; font-size: 17px">Leave three details</span><span style="font-size: 15px; line-height: 1.5; color: #3E4C5E">Name, email and phone number. That's all.</span></span></li>
+<li style="display: flex; gap: 16px; padding: 20px; background: #FFFFFF; border-radius: 14px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 34px; font-weight: 700; line-height: 1; color: #C2410C; flex: none; width: 24px">2</span><span style="display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 600; font-size: 17px">An adviser contacts you</span><span style="font-size: 15px; line-height: 1.5; color: #3E4C5E">An independent adviser contacts you <span class="verify">within one business day<span class="vnote"> — VERIFY</span></span>.</span></span></li>
+<li style="display: flex; gap: 16px; padding: 20px; background: #FFFFFF; border-radius: 14px"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 34px; font-weight: 700; line-height: 1; color: #C2410C; flex: none; width: 24px">3</span><span style="display: flex; flex-direction: column; gap: 6px"><span style="font-weight: 600; font-size: 17px">You decide what's next</span><span style="font-size: 15px; line-height: 1.5; color: #3E4C5E">The adviser explains your options. Continuing is up to you.</span></span></li>
+</ol>
+<a href="#" style="font-size: 15px; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center">More about how it works →</a>
+</section>
+
+<section aria-labelledby="m-us" style="background: #13233A; color: #FFFFFF; padding: 56px 16px; display: flex; flex-direction: column; gap: 18px">
+<p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #FDBA8C">For US citizens</p>
+<h2 id="m-us" style="margin: 0; font-size: 30px; line-height: 1.12">Americans buy homes here too. The paperwork is just different.</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.6; color: #D5DCE4">Because of FATCA, each Dutch lender sets its own rules for US clients. Some ask for a US TIN or a CLN, some lend if you hold a payment account with them, and some non-bank lenders aren't subject to FATCA at all.</p>
+<figure style="margin: 4px 0; padding: 24px; border-radius: 14px; background: #1D3150; border: 1px solid #2D4466; display: flex; flex-direction: column; gap: 8px">
+<p style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 52px; font-weight: 700; line-height: 1; color: #FDBA8C">78,700</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.5">US nationals lived in the Netherlands on 1 January 2025, up from 60,200 five years earlier.</p>
+<figcaption style="font-size: 13px; color: #AEB9C7">Source: CBS (Statistics Netherlands)</figcaption>
+</figure>
+<a href="#" style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; border-radius: 10px; border: 1.5px solid #FFFFFF; color: #FFFFFF; font-weight: 600; text-decoration: none">Read the guide for Americans</a>
+</section>
+
+<section aria-labelledby="m-guides" style="padding: 56px 16px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; justify-content: space-between; align-items: baseline"><h2 id="m-guides" style="margin: 0; font-size: 30px">Guides</h2><a href="#" style="font-size: 15px; font-weight: 600">All guides →</a></div>
+<a href="#" style="display: flex; flex-direction: column; gap: 8px; padding: 20px; border: 1px solid #DCE2E8; border-radius: 14px; text-decoration: none; color: #13233A"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5B6878">US citizens</span><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700; line-height: 1.25">Can Americans get a mortgage in the Netherlands?</span><span style="font-size: 13px; color: #5B6878">Reviewed by <span class="verify">[adviser name]</span></span></a>
+<a href="#" style="display: flex; flex-direction: column; gap: 8px; padding: 20px; border: 1px solid #DCE2E8; border-radius: 14px; text-decoration: none; color: #13233A"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5B6878">Income</span><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700; line-height: 1.25">Getting a mortgage on a USD or other non-euro income</span><span style="font-size: 13px; color: #5B6878">Reviewed by <span class="verify">[adviser name]</span></span></a>
+<a href="#" style="display: flex; flex-direction: column; gap: 8px; padding: 20px; border: 1px solid #DCE2E8; border-radius: 14px; text-decoration: none; color: #13233A"><span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #5B6878">Tax</span><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; font-weight: 700; line-height: 1.25">The expat ruling and your mortgage: from 30% to 27%</span><span style="font-size: 13px; color: #5B6878">Reviewed by <span class="verify">[adviser name]</span></span></a>
+</section>
+
+<section aria-labelledby="m-faq" style="background: #F3F5F7; padding: 56px 16px; display: flex; flex-direction: column; gap: 12px">
+<h2 id="m-faq" style="margin: 0 0 8px; font-size: 30px; line-height: 1.12">Questions people ask first</h2>
+<details open="" style="background: #FFFFFF; border-radius: 12px; padding: 0 16px">
+<summary style="display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 56px; font-weight: 600; font-size: 16px">Is My Dutch Door a bank or a mortgage adviser?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex: none"><path d="M5 12h14"></path></svg></summary>
+<p style="margin: 0 0 16px; font-size: 15px; line-height: 1.6; color: #3E4C5E">No. We're an introduction service. We don't give mortgage advice, compare lenders or arrange loans. We pass your name, email and phone number to an independent mortgage advisory partner, whose advisers take it from there.</p>
+</details>
+<details style="background: #FFFFFF; border-radius: 12px; padding: 0 16px"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 56px; font-weight: 600; font-size: 16px">What does it cost?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex: none"><path d="M12 5v14M5 12h14"></path></svg></summary></details>
+<details style="background: #FFFFFF; border-radius: 12px; padding: 0 16px"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 56px; font-weight: 600; font-size: 16px">What happens to my details?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex: none"><path d="M12 5v14M5 12h14"></path></svg></summary></details>
+<details style="background: #FFFFFF; border-radius: 12px; padding: 0 16px"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 56px; font-weight: 600; font-size: 16px">Do I need a permanent residence permit?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex: none"><path d="M12 5v14M5 12h14"></path></svg></summary></details>
+<details style="background: #FFFFFF; border-radius: 12px; padding: 0 16px"><summary style="display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 56px; font-weight: 600; font-size: 16px">I'm not American. Is this for me?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="flex: none"><path d="M12 5v14M5 12h14"></path></svg></summary></details>
+</section>
+
+<section aria-labelledby="m-cta" style="padding: 48px 16px">
+<div style="background: #FFF4EC; border-radius: 18px; padding: 28px 20px; display: flex; flex-direction: column; gap: 14px">
+<h2 id="m-cta" style="margin: 0; font-size: 26px; line-height: 1.15">Ready to talk it through?</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #3E4C5E">You don't need to have found a house yet.</p>
+<a href="#" style="display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 10px; background: #C2410C; color: #FFFFFF; font-weight: 600; font-size: 17px; text-decoration: none">Request a call back</a>
+</div>
+</section>
+
+<footer style="flex: 1 0 auto; background: #13233A; color: #D5DCE4; padding: 48px 16px 32px; display: flex; flex-direction: column; gap: 28px">
+<a href="#" aria-label="My Dutch Door home" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #FFFFFF"><svg width="22" height="27" viewBox="0 0 28 34" aria-hidden="true"><path d="M2 34V14a12 12 0 0 1 24 0v20z" fill="#EA580C"></path><circle cx="17" cy="23" r="1.8" fill="#FFFFFF"></circle></svg><span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 19px">My Dutch Door</span></a>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 16px; font-size: 15px">
+<nav aria-label="Guides" style="display: flex; flex-direction: column; gap: 10px"><p style="margin: 0; font-weight: 600; color: #FFFFFF">Guides</p><a href="#" style="color: #D5DCE4; text-decoration: none">For Americans</a><a href="#" style="color: #D5DCE4; text-decoration: none">FATCA, TIN, CLN</a><a href="#" style="color: #D5DCE4; text-decoration: none">Non-euro income</a><a href="#" style="color: #D5DCE4; text-decoration: none">Expat ruling</a></nav>
+<nav aria-label="Company" style="display: flex; flex-direction: column; gap: 10px"><p style="margin: 0; font-weight: 600; color: #FFFFFF">My Dutch Door</p><a href="#" style="color: #D5DCE4; text-decoration: none">How it works</a><a href="#" style="color: #D5DCE4; text-decoration: none">About</a><a href="#" style="color: #D5DCE4; text-decoration: none">For advisers</a><a href="#" style="color: #D5DCE4; text-decoration: none">Privacy policy</a><a href="#" style="color: #D5DCE4; text-decoration: none">Disclaimer</a></nav>
+</div>
+<div style="border: 1px solid #2D4466; border-radius: 12px; padding: 18px">
+<p style="margin: 0; font-size: 13px; line-height: 1.6"><strong style="color: #FFFFFF">We only connect you with an independent adviser.</strong> My Dutch Door does not give mortgage advice and is not a lender or a mortgage adviser. We pass your contact details to an independent mortgage advisory partner, whose advisers contact you directly. Information on this site is general, not personal advice.</p>
+</div>
+<p style="margin: 0; font-size: 12px; color: #AEB9C7">© 2026 My Dutch Door · KvK <span class="verify">[number]</span></p>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"placeholders":{"editor":"boolean","default":true},"$preview":{"width":390,"height":5900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { modeClass: this.props.placeholders === false ? 'clean' : '' };
+  }
+}
+</script>
+</body>
+</html>
