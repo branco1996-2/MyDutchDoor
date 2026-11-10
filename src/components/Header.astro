@@ -10,14 +10,14 @@ const path = Astro.url.pathname;
       <span>My Dutch Door</span>
     </a>
     <details class="menu" id="menu">
-      <summary>Menu</summary>
+      <summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg><span class="mtext">Menu</span></summary>
       <nav aria-label="Main">
         {site.nav.map((i) => (
           <a href={i.href} aria-current={path === i.href ? 'page' : undefined}>{i.label}</a>
         ))}
       </nav>
     </details>
-    <a href="/get-in-touch/" class="btn cta">Request a call back</a>
+    <a href="/get-in-touch/" class="btn cta" aria-label="Request a call back"><span class="long">Request a call back</span><span class="short" aria-hidden="true">Call back</span></a>
   </div>
 </header>
 
@@ -44,13 +44,24 @@ const path = Astro.url.pathname;
   .menu nav a { display: flex; align-items: center; min-height: 44px; color: var(--ink); text-decoration: none; font-weight: 500; font-size: 16px; border-bottom: 1px solid var(--line); }
   .menu nav a[aria-current] { color: var(--link); }
   .cta { margin-left: auto; }
-  @media (max-width: 899px) { .cta { display: none; } .menu { order: 0; width: auto; position: relative; margin-left: auto; }
-    .menu[open] { width: 100%; } }
+  .short { display: inline; } .long { display: none; }
+  @media (max-width: 899px) {
+    .bar { gap: 10px; flex-wrap: wrap; }
+    .brand { gap: 8px; margin-right: auto; }
+    .brand span { font-size: 18px; }
+    .brand :global(svg) { width: 24px; height: auto; }
+    .cta { order: 1; padding: 0 12px; font-size: 14px; }
+    .menu { order: 2; width: auto; }
+    .menu summary { width: 44px; padding: 0; justify-content: center; }
+    .mtext { display: none; }
+    .menu[open] { order: 3; width: 100%; }
+  }
   @media (min-width: 900px) {
     .menu { order: 0; width: auto; }
     .menu summary { display: none; }
     .menu nav { flex-direction: row; gap: 28px; padding: 0; }
     .menu nav a { min-height: 44px; border: 0; font-size: 15px; }
     .cta { margin-left: 0; }
+    .short { display: none; } .long { display: inline; }
   }
 </style>
